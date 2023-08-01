@@ -53,12 +53,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var seconds:Int = 0
     var minutes:Int = 0
     
-    var timerLabel:SKLabelNode = SKLabelNode() //MARK: Depois colocar fontNamed:
-    var scoreLabel:SKLabelNode = SKLabelNode()
+    var timerLabel:SKLabelNode = SKLabelNode(fontNamed: "04b")
+    var scoreLabel:SKLabelNode = SKLabelNode(fontNamed: "04b")
+    var levelLabel:SKLabelNode = SKLabelNode(fontNamed: "04b")
     
     var upgradedToLevel2 = false
     var upgradedToLevel3 = false
     var upgradedToLevel4 = false
+    var upgradedToLevel5 = false
+    var level:Int = 1
     
     
     override func update(_ currentTime: TimeInterval) {
@@ -85,6 +88,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        playerPosX = character.position.x
+        playerPosY = character.position.y
+        
         calculateTime(currentTime: currentTime)
         
         if (seconds > 10 && seconds <= 20) && !upgradedToLevel2 {
@@ -93,18 +99,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.removeAction(forKey: "rangedspawn")
             basicEnemySpawner(duration: 0.66)
             rangedEnemySpawner(duration: 1.2)
+            level += 1
         }
         
         if(seconds > 20 && seconds <= 30) && !upgradedToLevel3 {
             upgradedToLevel3 = true
             basicEnemySpawner(duration: 0.45)
             rangedEnemySpawner(duration: 1.0)
+            level += 1
         }
         
-        if (seconds > 30) && !upgradedToLevel4 {
+        if (seconds > 30 && seconds <= 60) && !upgradedToLevel4 {
             upgradedToLevel4 = true
             basicEnemySpawner(duration: 0.33)
             rangedEnemySpawner(duration: 0.8)
+            level += 1
+        }
+        if (seconds > 60) && !upgradedToLevel5 {
+            upgradedToLevel5 = true
+            basicEnemySpawner(duration: 0.2)
+            rangedEnemySpawner(duration: 0.55)
+            level += 1
+        }
+        
+        if level == 5 {
+            levelLabel.text = "Level 5"
+            levelLabel.fontColor = UIColor.red
+        }
+        else {
+            levelLabel.text = "Level \(level)"
         }
         
         
@@ -113,9 +136,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView){
         
-        bulletSpawner(duration: 0.5)
-        basicEnemySpawner(duration: 1.0)
-        rangedEnemySpawner(duration: 1.5)
+        bulletSpawner(duration: 0.36)
+        basicEnemySpawner(duration: 0.9)
+        rangedEnemySpawner(duration: 1.3)
         
         physicsWorld.contactDelegate = self
         
@@ -124,6 +147,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         scoreLabel.text = "\(score)"
         self.addChild(scoreLabel)
+        
+        levelLabel.text = "Level \(level)"
+        self.addChild(levelLabel)
         
         spawnCharacter()
         
@@ -149,7 +175,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ((firstBody.categoryBitMask == bitMasks.rangedenemy.rawValue) && (secondBody.categoryBitMask == bitMasks.character.rawValue)) || ((firstBody.categoryBitMask == bitMasks.character.rawValue) && (secondBody.categoryBitMask == bitMasks.rangedenemy.rawValue)){
             if let contactA = firstBody.node as? SKSpriteNode, let contactB = secondBody.node as? SKSpriteNode {
                 
-                collisionWithPlayer(enemy: contactA, player: contactB)
+//                collisionWithPlayer(enemy: contactA, player: contactB)
             }
         }
     }
@@ -159,7 +185,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bullet.removeFromParent()
         
         score += 1
-        print("\(score)")
         scoreLabel.text = "\(score)"
     }
     
@@ -167,7 +192,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy.removeFromParent()
         player.removeFromParent()
         
-        self.view?.presentScene(SKScene(fileNamed: "EndGameScreen"))
+        self.view?.presentScene(SKScene(fileNamed: "EndGameScene"))
     }
     
     func spawnCharacter(){
@@ -225,7 +250,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         Bullet.zPosition = -5
         Bullet.position = CGPointMake(playerPosX, playerPosY)
         
-        let action = SKAction.move(to: CGPoint(x: enemyPosX, y: enemyPosY), duration: 4)
+        let action = SKAction.move(to: CGPoint(x: enemyPosX, y: enemyPosY), duration: 2.5)
         let actionDone = SKAction.removeFromParent()
         Bullet.run(SKAction.sequence([action, actionDone]))
         
@@ -310,11 +335,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didChangeSize(_ oldSize: CGSize) {
-        timerLabel.position.x = 460
+        timerLabel.position.x = 480
         timerLabel.position.y = 270
         
-        scoreLabel.position.x = -460
-        scoreLabel.position.y = 270
+        levelLabel.position.x = -460
+        levelLabel.position.y = 270
+        
+        scoreLabel.position.x = 480
+        scoreLabel.position.y = -270
     }
     
     func calculateTime(currentTime: TimeInterval){

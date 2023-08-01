@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F3D82F62A796FAF00094231 /* EndGameScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D82F52A796FAF00094231 /* EndGameScreen.sks */; };
+		8F3D82FC2A79921D00094231 /* EndGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D82FB2A79921D00094231 /* EndGameScene.sks */; };
+		8F3D82FE2A7994B700094231 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D82FD2A7994B600094231 /* EndGameScene.swift */; };
+		8F3D83032A799BBC00094231 /* 04b.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D83012A7997CB00094231 /* 04b.TTF */; };
+		8F3D83052A799C6600094231 /* upheavtt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D83042A799C6600094231 /* upheavtt.ttf */; };
 		8FD3D0DE2A744265005AC47B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3D0DD2A744265005AC47B /* AppDelegate.swift */; };
 		8FD3D0E02A744265005AC47B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3D0DF2A744265005AC47B /* GameScene.sks */; };
 		8FD3D0E22A744265005AC47B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3D0E12A744265005AC47B /* Actions.sks */; };
@@ -20,7 +23,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8F3D82F52A796FAF00094231 /* EndGameScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndGameScreen.sks; sourceTree = "<group>"; };
+		8F3D82FB2A79921D00094231 /* EndGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndGameScene.sks; sourceTree = "<group>"; };
+		8F3D82FD2A7994B600094231 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
+		8F3D83012A7997CB00094231 /* 04b.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = 04b.TTF; sourceTree = "<group>"; };
+		8F3D83022A79990700094231 /* Mini-Challenge-01-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mini-Challenge-01-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8F3D83042A799C6600094231 /* upheavtt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = upheavtt.ttf; path = ../../../../../Downloads/upheaval/upheavtt.ttf; sourceTree = "<group>"; };
 		8FD3D0DA2A744265005AC47B /* Mini Challenge 01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Challenge 01.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD3D0DD2A744265005AC47B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FD3D0DF2A744265005AC47B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -44,6 +51,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F3D83002A7997CB00094231 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8F3D83042A799C6600094231 /* upheavtt.ttf */,
+				8F3D83012A7997CB00094231 /* 04b.TTF */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		8FD3D0D12A744265005AC47B = {
 			isa = PBXGroup;
 			children = (
@@ -63,16 +79,19 @@
 		8FD3D0DC2A744265005AC47B /* Mini Challenge 01 */ = {
 			isa = PBXGroup;
 			children = (
+				8F3D83022A79990700094231 /* Mini-Challenge-01-Info.plist */,
 				8FD3D0DD2A744265005AC47B /* AppDelegate.swift */,
 				8FD3D0DF2A744265005AC47B /* GameScene.sks */,
 				8FD3D0E12A744265005AC47B /* Actions.sks */,
 				8FD3D0E32A744265005AC47B /* GameScene.swift */,
-				8F3D82F52A796FAF00094231 /* EndGameScreen.sks */,
+				8F3D82FB2A79921D00094231 /* EndGameScene.sks */,
+				8F3D82FD2A7994B600094231 /* EndGameScene.swift */,
 				8FD3D0E52A744265005AC47B /* GameViewController.swift */,
 				8FD3D0E72A744265005AC47B /* Main.storyboard */,
 				8FD3D0EA2A744265005AC47B /* Assets.xcassets */,
 				8FD3D0EC2A744265005AC47B /* LaunchScreen.storyboard */,
 				8FD3D0F62A74428F005AC47B /* JoystickController.swift */,
+				8F3D83002A7997CB00094231 /* Fonts */,
 			);
 			path = "Mini Challenge 01";
 			sourceTree = "<group>";
@@ -136,10 +155,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FD3D0E92A744265005AC47B /* Main.storyboard in Resources */,
-				8F3D82F62A796FAF00094231 /* EndGameScreen.sks in Resources */,
+				8F3D83052A799C6600094231 /* upheavtt.ttf in Resources */,
 				8FD3D0E02A744265005AC47B /* GameScene.sks in Resources */,
 				8FD3D0EB2A744265005AC47B /* Assets.xcassets in Resources */,
 				8FD3D0EE2A744265005AC47B /* LaunchScreen.storyboard in Resources */,
+				8F3D82FC2A79921D00094231 /* EndGameScene.sks in Resources */,
+				8F3D83032A799BBC00094231 /* 04b.TTF in Resources */,
 				8FD3D0E22A744265005AC47B /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +176,7 @@
 				8FD3D0E62A744265005AC47B /* GameViewController.swift in Sources */,
 				8FD3D0F72A74428F005AC47B /* JoystickController.swift in Sources */,
 				8FD3D0DE2A744265005AC47B /* AppDelegate.swift in Sources */,
+				8F3D82FE2A7994B700094231 /* EndGameScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +325,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D94U49X98V;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mini-Challenge-01-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -330,6 +353,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D94U49X98V;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mini-Challenge-01-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
