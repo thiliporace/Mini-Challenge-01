@@ -15,6 +15,7 @@
 		8FD3D0E92A744265005AC47B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3D0E72A744265005AC47B /* Main.storyboard */; };
 		8FD3D0EB2A744265005AC47B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3D0EA2A744265005AC47B /* Assets.xcassets */; };
 		8FD3D0EE2A744265005AC47B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3D0EC2A744265005AC47B /* LaunchScreen.storyboard */; };
+		8FD3D0F72A74428F005AC47B /* JoystickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3D0F62A74428F005AC47B /* JoystickController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		8FD3D0E82A744265005AC47B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8FD3D0EA2A744265005AC47B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8FD3D0ED2A744265005AC47B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8FD3D0F62A74428F005AC47B /* JoystickController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				8FD3D0E72A744265005AC47B /* Main.storyboard */,
 				8FD3D0EA2A744265005AC47B /* Assets.xcassets */,
 				8FD3D0EC2A744265005AC47B /* LaunchScreen.storyboard */,
+				8FD3D0F62A74428F005AC47B /* JoystickController.swift */,
 			);
 			path = "Mini Challenge 01";
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			files = (
 				8FD3D0E42A744265005AC47B /* GameScene.swift in Sources */,
 				8FD3D0E62A744265005AC47B /* GameViewController.swift in Sources */,
+				8FD3D0F72A74428F005AC47B /* JoystickController.swift in Sources */,
 				8FD3D0DE2A744265005AC47B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,8 +303,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -327,8 +330,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
