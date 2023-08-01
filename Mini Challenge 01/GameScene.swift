@@ -13,13 +13,14 @@ import SwiftUI
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var character = SKSpriteNode()
-//    var basicEnemy = SKSpriteNode(imageNamed: "BasicEnemy")
-//    var rangedEnemy = SKSpriteNode(imageNamed: "RangedEnemy")
     var characterTexture = SKTexture(imageNamed: "character")
     
-    var enemies: [SKSpriteNode] = [SKSpriteNode(imageNamed: "BasicEnemy"),SKSpriteNode(imageNamed: "RangedEnemy")]
+    var basicEnemy : SKSpriteNode! { get{ return SKSpriteNode(imageNamed: "BasicEnemy") } }
     
-    var enemyTextures: [SKTexture] = [SKTexture(imageNamed: "BasicEnemy"), SKTexture(imageNamed: "RangedEnemy")]
+    var rangedEnemy : SKSpriteNode! { get{ return SKSpriteNode(imageNamed: "RangedEnemy") } }
+    
+    var basicEnemyTexture: SKTexture = SKTexture(imageNamed: "BasicEnemy")
+    var rangedEnemyTexture: SKTexture = SKTexture(imageNamed: "RangedEnemy")
     
     var virtualController: GCVirtualController?
     
@@ -42,8 +43,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     enum bitMasks: UInt32{
         case character = 1
         case bush = 2
-        case enemy = 3
+        case basicenemy = 3
         case bullet = 4
+        case rangedenemy = 5
     }
     
     var renderTime: TimeInterval = 0
@@ -53,6 +55,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var timerLabel:SKLabelNode = SKLabelNode() //MARK: Depois colocar fontNamed:
     var scoreLabel:SKLabelNode = SKLabelNode()
+    
+    var upgradedToLevel2 = false
+    var upgradedToLevel3 = false
+    var upgradedToLevel4 = false
     
     
     override func update(_ currentTime: TimeInterval) {
@@ -81,17 +87,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         calculateTime(currentTime: currentTime)
         
-        if seconds % 5 == 0{
-            SpawnEnemies()
+        if (seconds > 10 && seconds <= 20) && !upgradedToLevel2 {
+            upgradedToLevel2 = true
+            self.removeAction(forKey: "basicspawn")
+            self.removeAction(forKey: "rangedspawn")
+            basicEnemySpawner(duration: 0.66)
+            rangedEnemySpawner(duration: 1.2)
         }
         
-        if seconds % 2 == 0{
-            SpawnBullets()
+        if(seconds > 20 && seconds <= 30) && !upgradedToLevel3 {
+            upgradedToLevel3 = true
+            basicEnemySpawner(duration: 0.45)
+            rangedEnemySpawner(duration: 1.0)
         }
+        
+        if (seconds > 30) && !upgradedToLevel4 {
+            upgradedToLevel4 = true
+            basicEnemySpawner(duration: 0.33)
+            rangedEnemySpawner(duration: 0.8)
+        }
+        
+        
         
     } // MARK: funcao de update para a cena
     
     override func didMove(to view: SKView){
+        
+        bulletSpawner(duration: 0.5)
+        basicEnemySpawner(duration: 1.0)
+        rangedEnemySpawner(duration: 1.5)
         
         physicsWorld.contactDelegate = self
         
@@ -108,17 +132,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     } // MARK: funcao para colocar as funcoes na cena View
     
     func didBegin(_ contact: SKPhysicsContact) {
+        
         let firstBody: SKPhysicsBody = contact.bodyA
         let secondBody: SKPhysicsBody = contact.bodyB
         
-        if ((firstBody.categoryBitMask == bitMasks.enemy.rawValue) && (secondBody.categoryBitMask == bitMasks.bullet.rawValue) || (firstBody.categoryBitMask == bitMasks.bullet.rawValue) && (secondBody.categoryBitMask == bitMasks.enemy.rawValue)) {
+        if ((firstBody.categoryBitMask == bitMasks.basicenemy.rawValue) && (secondBody.categoryBitMask == bitMasks.bullet.rawValue) || (firstBody.categoryBitMask == bitMasks.bullet.rawValue) && (secondBody.categoryBitMask == bitMasks.basicenemy.rawValue)) ||
+            ((firstBody.categoryBitMask == bitMasks.rangedenemy.rawValue) && (secondBody.categoryBitMask == bitMasks.bullet.rawValue)) || ((firstBody.categoryBitMask == bitMasks.bullet.rawValue) && (secondBody.categoryBitMask == bitMasks.rangedenemy.rawValue)){
             
-            collisionWithBullet(enemy: firstBody.node as! SKSpriteNode, bullet: secondBody.node as! SKSpriteNode) //MARK: crashando.
+            if let contactA = firstBody.node as? SKSpriteNode, let contactB = secondBody.node as? SKSpriteNode {
+                
+                collisionWithBullet(enemy: contactA, bullet: contactB)
+            }
         }
-//        else if ((firstBody.categoryBitMask == bitMasks.enemy.rawValue) && (secondBody.categoryBitMask == bitMasks.character.rawValue) || (firstBody.categoryBitMask == bitMasks.character.rawValue) && (secondBody.categoryBitMask == bitMasks.enemy.rawValue)) {
-//
-//            collisionWithPlayer(enemy: firstBody.node as! SKSpriteNode, player: secondBody.node as! SKSpriteNode)
-//        }
+        
+        else if ((firstBody.categoryBitMask == bitMasks.basicenemy.rawValue) && (secondBody.categoryBitMask == bitMasks.character.rawValue) || (firstBody.categoryBitMask == bitMasks.character.rawValue) && (secondBody.categoryBitMask == bitMasks.basicenemy.rawValue)) ||
+            ((firstBody.categoryBitMask == bitMasks.rangedenemy.rawValue) && (secondBody.categoryBitMask == bitMasks.character.rawValue)) || ((firstBody.categoryBitMask == bitMasks.character.rawValue) && (secondBody.categoryBitMask == bitMasks.rangedenemy.rawValue)){
+            if let contactA = firstBody.node as? SKSpriteNode, let contactB = secondBody.node as? SKSpriteNode {
+                
+                collisionWithPlayer(enemy: contactA, player: contactB)
+            }
+        }
     }
     
     func collisionWithBullet(enemy: SKSpriteNode, bullet: SKSpriteNode) {
@@ -133,6 +166,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func collisionWithPlayer(enemy: SKSpriteNode, player: SKSpriteNode){
         enemy.removeFromParent()
         player.removeFromParent()
+        
+        self.view?.presentScene(SKScene(fileNamed: "EndGameScreen"))
     }
     
     func spawnCharacter(){
@@ -147,7 +182,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         character.physicsBody?.collisionBitMask = bitMasks.bush.rawValue
         
-        character.physicsBody?.contactTestBitMask = bitMasks.enemy.rawValue
+        character.physicsBody?.contactTestBitMask = bitMasks.basicenemy.rawValue
         
         character.physicsBody!.affectedByGravity = false
         
@@ -196,7 +231,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         Bullet.physicsBody = SKPhysicsBody(texture: BulletTexture, size: Bullet.size)
         Bullet.physicsBody?.categoryBitMask = bitMasks.bullet.rawValue
-        Bullet.physicsBody?.contactTestBitMask = bitMasks.enemy.rawValue
+        Bullet.physicsBody?.contactTestBitMask = bitMasks.basicenemy.rawValue
         Bullet.physicsBody?.affectedByGravity = false
         Bullet.physicsBody?.allowsRotation = true
         Bullet.physicsBody?.isDynamic = false
@@ -204,10 +239,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(Bullet)
     }
     
-    func SpawnEnemies(){
+    func SpawnBasicEnemies(){
         
-        let enemy = enemies.randomElement()
-        let enemyTexture = enemyTextures.randomElement()
+        let basicEnemy: SKSpriteNode = basicEnemy
+        let basicEnemyTexture: SKTexture = basicEnemyTexture
         
         let minValueY = -260
         let maxValueY = 260
@@ -221,22 +256,57 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemyPosX = CGFloat(arc4random_uniform(spawnPointX))
         enemyPosY = CGFloat(arc4random_uniform(spawnPointY))
         
-        enemy!.position = CGPoint (x: enemyPosX, y: enemyPosY)
+        basicEnemy.position = CGPoint (x: enemyPosX, y: enemyPosY)
         
-        enemy?.physicsBody = SKPhysicsBody(texture: enemyTexture!, size: enemy!.size)
-        enemy?.physicsBody?.categoryBitMask = bitMasks.enemy.rawValue
-        enemy?.physicsBody?.contactTestBitMask = bitMasks.bullet.rawValue
-        enemy?.physicsBody?.affectedByGravity = false
-        enemy?.physicsBody?.isDynamic = true
-        enemy?.physicsBody?.allowsRotation = false
+        basicEnemy.physicsBody = SKPhysicsBody(texture: basicEnemyTexture, size: basicEnemy.size)
+        basicEnemy.physicsBody?.categoryBitMask = bitMasks.basicenemy.rawValue
+        basicEnemy.physicsBody?.collisionBitMask = bitMasks.rangedenemy.rawValue
+        basicEnemy.physicsBody?.contactTestBitMask = bitMasks.bullet.rawValue
+        basicEnemy.physicsBody?.affectedByGravity = false
+        basicEnemy.physicsBody?.isDynamic = true
+        basicEnemy.physicsBody?.allowsRotation = false
         
-
-        self.addChild(enemy?.copy() as! SKNode)
+        self.addChild(basicEnemy)
         
-        let action = SKAction.move(to: CGPoint(x: playerPosX, y: playerPosY), duration: 2)
+        let action = SKAction.move(to: CGPoint(x: playerPosX, y: playerPosY), duration: 3)
         let actionDone = SKAction.removeFromParent()
         
-        enemy!.run(SKAction.sequence([action,actionDone]))
+        basicEnemy.run(SKAction.sequence([action,actionDone]))
+    }
+    
+    func SpawnRangedEnemies(){
+        
+        let rangedEnemy: SKSpriteNode = rangedEnemy
+        let rangedEnemyTexture: SKTexture = rangedEnemyTexture
+        
+        let minValueY = -260
+        let maxValueY = 260
+        
+        let minValueX = -800
+        let maxValueX = 800
+        
+        let spawnPointX = UInt32(maxValueX - minValueX)
+        let spawnPointY = UInt32(maxValueY - minValueY)
+        
+        enemyPosX = CGFloat(arc4random_uniform(spawnPointX))
+        enemyPosY = CGFloat(arc4random_uniform(spawnPointY))
+        
+        rangedEnemy.position = CGPoint (x: enemyPosX, y: enemyPosY)
+        
+        rangedEnemy.physicsBody = SKPhysicsBody(texture: rangedEnemyTexture, size: rangedEnemy.size)
+        rangedEnemy.physicsBody?.categoryBitMask = bitMasks.rangedenemy.rawValue
+        rangedEnemy.physicsBody?.collisionBitMask = bitMasks.rangedenemy.rawValue
+        rangedEnemy.physicsBody?.contactTestBitMask = bitMasks.bullet.rawValue
+        rangedEnemy.physicsBody?.affectedByGravity = false
+        rangedEnemy.physicsBody?.isDynamic = true
+        rangedEnemy.physicsBody?.allowsRotation = false
+        
+        self.addChild(rangedEnemy)
+        
+        let action = SKAction.move(to: CGPoint(x: playerPosX, y: playerPosY), duration: 6)
+        let actionDone = SKAction.removeFromParent()
+        
+        rangedEnemy.run(SKAction.sequence([action,actionDone]))
     }
     
     override func didChangeSize(_ oldSize: CGSize) {
@@ -261,6 +331,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             renderTime = currentTime + changeTime
         }
+    }
+    
+    func basicEnemySpawner(duration: Double) {
+        
+        let wait = SKAction.wait(forDuration: duration)
+        let action = SKAction.run {
+            self.SpawnBasicEnemies()
+        }
+        let repeater = SKAction.repeatForever(SKAction.sequence([wait, action]))
+        
+        run(repeater, withKey: "basicspawn")
+    }
+    
+    func rangedEnemySpawner(duration: Double) {
+        
+        let wait = SKAction.wait(forDuration: duration)
+        let action = SKAction.run {
+            self.SpawnRangedEnemies()
+        }
+        let repeater = SKAction.repeatForever(SKAction.sequence([wait, action]))
+        
+        run(repeater, withKey: "rangedspawn")
+    }
+    
+    func bulletSpawner(duration: Double) {
+        
+        let wait = SKAction.wait(forDuration: duration)
+        let action = SKAction.run {
+            self.SpawnBullets()
+        }
+        let repeater = SKAction.repeatForever(SKAction.sequence([wait, action]))
+        
+        run(repeater, withKey: "bulletspawn")
     }
     
     

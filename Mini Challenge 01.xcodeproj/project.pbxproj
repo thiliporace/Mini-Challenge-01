@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F3D82F62A796FAF00094231 /* EndGameScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D82F52A796FAF00094231 /* EndGameScreen.sks */; };
 		8FD3D0DE2A744265005AC47B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3D0DD2A744265005AC47B /* AppDelegate.swift */; };
 		8FD3D0E02A744265005AC47B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3D0DF2A744265005AC47B /* GameScene.sks */; };
 		8FD3D0E22A744265005AC47B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3D0E12A744265005AC47B /* Actions.sks */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F3D82F52A796FAF00094231 /* EndGameScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndGameScreen.sks; sourceTree = "<group>"; };
 		8FD3D0DA2A744265005AC47B /* Mini Challenge 01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Challenge 01.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD3D0DD2A744265005AC47B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FD3D0DF2A744265005AC47B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				8FD3D0DF2A744265005AC47B /* GameScene.sks */,
 				8FD3D0E12A744265005AC47B /* Actions.sks */,
 				8FD3D0E32A744265005AC47B /* GameScene.swift */,
+				8F3D82F52A796FAF00094231 /* EndGameScreen.sks */,
 				8FD3D0E52A744265005AC47B /* GameViewController.swift */,
 				8FD3D0E72A744265005AC47B /* Main.storyboard */,
 				8FD3D0EA2A744265005AC47B /* Assets.xcassets */,
@@ -133,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FD3D0E92A744265005AC47B /* Main.storyboard in Resources */,
+				8F3D82F62A796FAF00094231 /* EndGameScreen.sks in Resources */,
 				8FD3D0E02A744265005AC47B /* GameScene.sks in Resources */,
 				8FD3D0EB2A744265005AC47B /* Assets.xcassets in Resources */,
 				8FD3D0EE2A744265005AC47B /* LaunchScreen.storyboard in Resources */,
