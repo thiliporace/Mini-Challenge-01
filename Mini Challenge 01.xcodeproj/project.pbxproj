@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F39B24E2A7ABC2200EF1211 /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B24D2A7ABC2200EF1211 /* UserNotification.swift */; };
+		8F39B2522A7AC4B400EF1211 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B2512A7AC4B400EF1211 /* MenuScene.swift */; };
+		8F39B2542A7AC4D400EF1211 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B2532A7AC4D400EF1211 /* MenuScene.sks */; };
 		8F3D82FC2A79921D00094231 /* EndGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D82FB2A79921D00094231 /* EndGameScene.sks */; };
 		8F3D82FE2A7994B700094231 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D82FD2A7994B600094231 /* EndGameScene.swift */; };
 		8F3D83032A799BBC00094231 /* 04b.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D83012A7997CB00094231 /* 04b.TTF */; };
@@ -23,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F39B24D2A7ABC2200EF1211 /* UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
+		8F39B2512A7AC4B400EF1211 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		8F39B2532A7AC4D400EF1211 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 		8F3D82FB2A79921D00094231 /* EndGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndGameScene.sks; sourceTree = "<group>"; };
 		8F3D82FD2A7994B600094231 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
 		8F3D83012A7997CB00094231 /* 04b.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = 04b.TTF; sourceTree = "<group>"; };
@@ -84,6 +90,8 @@
 				8FD3D0DF2A744265005AC47B /* GameScene.sks */,
 				8FD3D0E12A744265005AC47B /* Actions.sks */,
 				8FD3D0E32A744265005AC47B /* GameScene.swift */,
+				8F39B2532A7AC4D400EF1211 /* MenuScene.sks */,
+				8F39B2512A7AC4B400EF1211 /* MenuScene.swift */,
 				8F3D82FB2A79921D00094231 /* EndGameScene.sks */,
 				8F3D82FD2A7994B600094231 /* EndGameScene.swift */,
 				8FD3D0E52A744265005AC47B /* GameViewController.swift */,
@@ -91,6 +99,7 @@
 				8FD3D0EA2A744265005AC47B /* Assets.xcassets */,
 				8FD3D0EC2A744265005AC47B /* LaunchScreen.storyboard */,
 				8FD3D0F62A74428F005AC47B /* JoystickController.swift */,
+				8F39B24D2A7ABC2200EF1211 /* UserNotification.swift */,
 				8F3D83002A7997CB00094231 /* Fonts */,
 			);
 			path = "Mini Challenge 01";
@@ -161,6 +170,7 @@
 				8FD3D0EE2A744265005AC47B /* LaunchScreen.storyboard in Resources */,
 				8F3D82FC2A79921D00094231 /* EndGameScene.sks in Resources */,
 				8F3D83032A799BBC00094231 /* 04b.TTF in Resources */,
+				8F39B2542A7AC4D400EF1211 /* MenuScene.sks in Resources */,
 				8FD3D0E22A744265005AC47B /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,8 +185,10 @@
 				8FD3D0E42A744265005AC47B /* GameScene.swift in Sources */,
 				8FD3D0E62A744265005AC47B /* GameViewController.swift in Sources */,
 				8FD3D0F72A74428F005AC47B /* JoystickController.swift in Sources */,
+				8F39B2522A7AC4B400EF1211 /* MenuScene.swift in Sources */,
 				8FD3D0DE2A744265005AC47B /* AppDelegate.swift in Sources */,
 				8F3D82FE2A7994B700094231 /* EndGameScene.swift in Sources */,
+				8F39B24E2A7ABC2200EF1211 /* UserNotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,9 +338,11 @@
 				DEVELOPMENT_TEAM = D94U49X98V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mini-Challenge-01-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Feed 'em Up";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -354,9 +368,11 @@
 				DEVELOPMENT_TEAM = D94U49X98V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mini-Challenge-01-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Feed 'em Up";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

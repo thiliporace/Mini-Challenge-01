@@ -9,10 +9,11 @@ import SpriteKit
 import GameplayKit
 import GameController
 import SwiftUI
+import UserNotifications
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var character = SKSpriteNode()
+    var character = SKSpriteNode(imageNamed: "character")
     var characterTexture = SKTexture(imageNamed: "character")
     
     var basicEnemy : SKSpriteNode! { get{ return SKSpriteNode(imageNamed: "BasicEnemy") } }
@@ -97,6 +98,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             upgradedToLevel2 = true
             self.removeAction(forKey: "basicspawn")
             self.removeAction(forKey: "rangedspawn")
+            bulletSpawner(duration: 0.40)
             basicEnemySpawner(duration: 0.66)
             rangedEnemySpawner(duration: 1.2)
             level += 1
@@ -104,6 +106,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if(seconds > 20 && seconds <= 30) && !upgradedToLevel3 {
             upgradedToLevel3 = true
+            bulletSpawner(duration: 0.32)
             basicEnemySpawner(duration: 0.45)
             rangedEnemySpawner(duration: 1.0)
             level += 1
@@ -111,23 +114,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if (seconds > 30 && seconds <= 60) && !upgradedToLevel4 {
             upgradedToLevel4 = true
+            bulletSpawner(duration: 0.24)
             basicEnemySpawner(duration: 0.33)
             rangedEnemySpawner(duration: 0.8)
             level += 1
         }
-        if (seconds > 60) && !upgradedToLevel5 {
+        if (minutes >= 1) && !upgradedToLevel5 {
             upgradedToLevel5 = true
+            bulletSpawner(duration: 0.16)
             basicEnemySpawner(duration: 0.2)
             rangedEnemySpawner(duration: 0.55)
             level += 1
         }
         
+        levelLabel.text = "Level \(level)"
+        
         if level == 5 {
-            levelLabel.text = "Level 5"
             levelLabel.fontColor = UIColor.red
         }
         else {
-            levelLabel.text = "Level \(level)"
+            levelLabel.fontColor = UIColor.white
         }
         
         
@@ -136,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView){
         
-        bulletSpawner(duration: 0.36)
+        bulletSpawner(duration: 0.5)
         basicEnemySpawner(duration: 0.9)
         rangedEnemySpawner(duration: 1.3)
         
@@ -175,7 +181,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ((firstBody.categoryBitMask == bitMasks.rangedenemy.rawValue) && (secondBody.categoryBitMask == bitMasks.character.rawValue)) || ((firstBody.categoryBitMask == bitMasks.character.rawValue) && (secondBody.categoryBitMask == bitMasks.rangedenemy.rawValue)){
             if let contactA = firstBody.node as? SKSpriteNode, let contactB = secondBody.node as? SKSpriteNode {
                 
-//                collisionWithPlayer(enemy: contactA, player: contactB)
+                collisionWithPlayer(enemy: contactA, player: contactB)
             }
         }
     }
@@ -189,15 +195,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func collisionWithPlayer(enemy: SKSpriteNode, player: SKSpriteNode){
+        
+        let ScoreDefault = UserDefaults.standard
+        ScoreDefault.setValue(score, forKey: "Score")
+        ScoreDefault.synchronize()
+        
         enemy.removeFromParent()
         player.removeFromParent()
         
         self.view?.presentScene(SKScene(fileNamed: "EndGameScene"))
+        
     }
     
     func spawnCharacter(){
         
-        character = childNode(withName: "character") as! SKSpriteNode
+//        character = childNode(withName: "character") as! SKSpriteNode
         
         character.physicsBody = SKPhysicsBody(texture: characterTexture, size: character.size)
         
@@ -212,6 +224,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         character.physicsBody!.affectedByGravity = false
         
         character.physicsBody?.allowsRotation = false
+        
+        self.addChild(character)
         
     } // MARK: funcao para spawnar o personagem, cria um nodo, adiciona fisica, cria ele em uma posicao, declara qual seu bitmask(usado para colisoes), desliga sua gravidade
     
