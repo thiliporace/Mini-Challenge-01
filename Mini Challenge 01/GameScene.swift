@@ -31,9 +31,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var enemyPosX: CGFloat = 0
     var enemyPosY: CGFloat = 0
     
-    var moveSpeed: CGFloat = 3.5
+    var moveSpeed: CGFloat = 3.55
     
     var score: Int = 0
+    var highscore: Int = 0
     
     var isPlayerAlive = true
     
@@ -104,15 +105,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             level += 1
         }
         
-        if(seconds > 20 && seconds <= 30) && !upgradedToLevel3 {
+        if(seconds > 20 && seconds <= 35) && !upgradedToLevel3 {
             upgradedToLevel3 = true
-            bulletSpawner(duration: 0.32)
+            bulletSpawner(duration: 0.3)
             basicEnemySpawner(duration: 0.45)
             rangedEnemySpawner(duration: 1.0)
             level += 1
         }
         
-        if (seconds > 30 && seconds <= 60) && !upgradedToLevel4 {
+        if (seconds > 35 && seconds <= 60) && !upgradedToLevel4 {
             upgradedToLevel4 = true
             bulletSpawner(duration: 0.24)
             basicEnemySpawner(duration: 0.33)
@@ -121,8 +122,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if (minutes >= 1) && !upgradedToLevel5 {
             upgradedToLevel5 = true
-            bulletSpawner(duration: 0.16)
-            basicEnemySpawner(duration: 0.2)
+            bulletSpawner(duration: 0.22)
+            basicEnemySpawner(duration: 0.22)
             rangedEnemySpawner(duration: 0.55)
             level += 1
         }
@@ -141,6 +142,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     } // MARK: funcao de update para a cena
     
     override func didMove(to view: SKView){
+        
+        let highscoreDefault = UserDefaults.standard
+         
+        if (highscoreDefault.value(forKey: "Highscore") != nil){
+            highscore = highscoreDefault.value(forKey: "Highscore") as! NSInteger
+        }
+        else {
+            highscore = 0
+        }
         
         bulletSpawner(duration: 0.5)
         basicEnemySpawner(duration: 0.9)
@@ -199,6 +209,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let ScoreDefault = UserDefaults.standard
         ScoreDefault.setValue(score, forKey: "Score")
         ScoreDefault.synchronize()
+        
+        if score > highscore{
+            let highscoreDefault = UserDefaults.standard
+            highscoreDefault.setValue(score, forKey: "Highscore")
+        }
         
         enemy.removeFromParent()
         player.removeFromParent()
@@ -307,7 +322,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(basicEnemy)
         
-        let action = SKAction.move(to: CGPoint(x: playerPosX, y: playerPosY), duration: 3)
+        let action = SKAction.move(to: CGPoint(x: playerPosX, y: playerPosY), duration: 2.8)
         let actionDone = SKAction.removeFromParent()
         
         basicEnemy.run(SKAction.sequence([action,actionDone]))
@@ -342,7 +357,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(rangedEnemy)
         
-        let action = SKAction.move(to: CGPoint(x: playerPosX, y: playerPosY), duration: 6)
+        let action = SKAction.move(to: CGPoint(x: playerPosX - 50, y: playerPosY - 50), duration: 5.6)
         let actionDone = SKAction.removeFromParent()
         
         rangedEnemy.run(SKAction.sequence([action,actionDone]))

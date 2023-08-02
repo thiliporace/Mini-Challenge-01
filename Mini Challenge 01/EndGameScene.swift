@@ -17,7 +17,9 @@ class EndGameScene: SKScene {
     var MenuText: SKLabelNode!
     var EndSceneTitle: SKLabelNode!
     var ScoreText: SKLabelNode!
+    var HighscoreText: SKLabelNode!
     var score: Int = 0
+    var highscore:Int = 0
 
     override func didMove(to view: SKView) {
 
@@ -31,11 +33,23 @@ class EndGameScene: SKScene {
         MenuText = self.childNode(withName: "MenuText") as? SKLabelNode
         EndSceneTitle = self.childNode(withName: "EndSceneTitle") as? SKLabelNode
         
+        RestartText.position = CGPoint(x: 154.5, y: -106.5)
+        RestartText.zPosition = 10
+        
+        MenuText.position = CGPoint(x: -155.5, y: -106.5)
+        MenuText.zPosition = 10
+        
         let ScoreDefault = UserDefaults.standard
         
         score = ScoreDefault.value(forKey: "Score") as! NSInteger
         ScoreText = self.childNode(withName: "ScoreText") as? SKLabelNode
         ScoreText.text = "Your score was:  \(String(describing: score))"
+        
+        let highscoreDefault = UserDefaults.standard
+        
+        highscore = ScoreDefault.value(forKey: "Highscore") as! NSInteger
+        HighscoreText = self.childNode(withName: "HighscoreText") as? SKLabelNode
+        HighscoreText.text = "Your highscore is:  \(String(describing: highscore))"
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

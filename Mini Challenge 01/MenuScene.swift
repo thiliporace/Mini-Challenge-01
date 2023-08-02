@@ -24,6 +24,9 @@ class MenuScene: SKScene {
         PlayText = self.childNode(withName: "PlayText") as? SKLabelNode
 
         PlayButton.texture = SKTexture(imageNamed: "Button")
+        
+        PlayText.position = CGPoint(x: -0.5, y: -192.5)
+        PlayText.zPosition = 10
 
     }
     
@@ -56,12 +59,13 @@ class MenuScene: SKScene {
     
     func sendNotification(){
         let content = UNMutableNotificationContent()
-        content.title = "it's time to Feed'Em Up!"
+        content.title = "It's time to Feed'Em Up!"
+        content.subtitle = "Let's Play!"
         content.sound = UNNotificationSound.default
         
         var date = DateComponents()
-        date.hour = 13
-        date.minute = 53
+        date.hour = 17
+        date.minute = 05
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
         
