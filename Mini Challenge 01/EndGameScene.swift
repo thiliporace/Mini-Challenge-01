@@ -7,6 +7,7 @@
 
 import UIKit
 import SpriteKit
+import CoreData
 
 class EndGameScene: SKScene {
     
@@ -20,6 +21,9 @@ class EndGameScene: SKScene {
     var HighscoreText: SKLabelNode!
     var score: Int = 0
     var highscore:Int = 0
+    
+//    var scoreController: ScoreController!
+//    var highscoreController: HighscoreController!
 
     override func didMove(to view: SKView) {
 
@@ -40,16 +44,20 @@ class EndGameScene: SKScene {
         MenuText.zPosition = 10
         
         let ScoreDefault = UserDefaults.standard
-        
+
         score = ScoreDefault.value(forKey: "Score") as! NSInteger
         ScoreText = self.childNode(withName: "ScoreText") as? SKLabelNode
         ScoreText.text = "Your score was:  \(String(describing: score))"
-        
+
         let highscoreDefault = UserDefaults.standard
-        
-        highscore = ScoreDefault.value(forKey: "Highscore") as! NSInteger
+
+        highscore = highscoreDefault.value(forKey: "Highscore") as! NSInteger
         HighscoreText = self.childNode(withName: "HighscoreText") as? SKLabelNode
         HighscoreText.text = "Your highscore is:  \(String(describing: highscore))"
+        
+//        scoreController.createInitialScore()
+//        scoreController.createScore(score: Int32(score))
+//        ScoreText.text = "Your score was:  \(String(describing: score))"
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

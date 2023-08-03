@@ -10,6 +10,7 @@ import GameplayKit
 import GameController
 import SwiftUI
 import UserNotifications
+import CoreData
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -64,6 +65,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var upgradedToLevel4 = false
     var upgradedToLevel5 = false
     var level:Int = 1
+   
+//    @StateObject var coreDataController = CoreDataController()
+//    @ObservedObject var scoreController: ScoreController
+//    @ObservedObject var highscoreController: HighscoreController
     
     
     override func update(_ currentTime: TimeInterval) {
@@ -143,6 +148,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView){
         
+        let backgroundSound = SKAudioNode(fileNamed: "MusicaJogo")
+        self.addChild(backgroundSound)
+        
         let highscoreDefault = UserDefaults.standard
          
         if (highscoreDefault.value(forKey: "Highscore") != nil){
@@ -151,6 +159,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         else {
             highscore = 0
         }
+        
+//        coreDataController.container.viewContext
         
         bulletSpawner(duration: 0.5)
         basicEnemySpawner(duration: 0.9)
@@ -210,10 +220,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ScoreDefault.setValue(score, forKey: "Score")
         ScoreDefault.synchronize()
         
+//        scoreController.createInitialScore()
+        
         if score > highscore{
             let highscoreDefault = UserDefaults.standard
             highscoreDefault.setValue(score, forKey: "Highscore")
         }
+        
+//        if score > highscore {
+//            highscoreController.createInitialHighscore()
+//            highscoreController.createHighscore(highscore: Int32(score))
+//        }
         
         enemy.removeFromParent()
         player.removeFromParent()

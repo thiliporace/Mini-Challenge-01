@@ -9,10 +9,15 @@
 /* Begin PBXBuildFile section */
 		8F39B2522A7AC4B400EF1211 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F39B2512A7AC4B400EF1211 /* MenuScene.swift */; };
 		8F39B2542A7AC4D400EF1211 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B2532A7AC4D400EF1211 /* MenuScene.sks */; };
+		8F39B25A2A7AF85400EF1211 /* MusicaJogo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8F39B2592A7AF85400EF1211 /* MusicaJogo.wav */; };
 		8F3D82FC2A79921D00094231 /* EndGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D82FB2A79921D00094231 /* EndGameScene.sks */; };
 		8F3D82FE2A7994B700094231 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D82FD2A7994B600094231 /* EndGameScene.swift */; };
 		8F3D83032A799BBC00094231 /* 04b.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D83012A7997CB00094231 /* 04b.TTF */; };
 		8F3D83052A799C6600094231 /* upheavtt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D83042A799C6600094231 /* upheavtt.ttf */; };
+		8FD108202A7C0B04007EE797 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8FD1081E2A7C0B04007EE797 /* Model.xcdatamodeld */; };
+		8FD108232A7C1000007EE797 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD108222A7C1000007EE797 /* CoreDataController.swift */; };
+		8FD108252A7C106B007EE797 /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD108242A7C106B007EE797 /* ScoreController.swift */; };
+		8FD108272A7C134E007EE797 /* HighscoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD108262A7C134E007EE797 /* HighscoreController.swift */; };
 		8FD3D0DE2A744265005AC47B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3D0DD2A744265005AC47B /* AppDelegate.swift */; };
 		8FD3D0E02A744265005AC47B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3D0DF2A744265005AC47B /* GameScene.sks */; };
 		8FD3D0E22A744265005AC47B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8FD3D0E12A744265005AC47B /* Actions.sks */; };
@@ -27,11 +32,16 @@
 /* Begin PBXFileReference section */
 		8F39B2512A7AC4B400EF1211 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		8F39B2532A7AC4D400EF1211 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
+		8F39B2592A7AF85400EF1211 /* MusicaJogo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = MusicaJogo.wav; path = ../../../../../Downloads/MusicaJogo.wav; sourceTree = "<group>"; };
 		8F3D82FB2A79921D00094231 /* EndGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndGameScene.sks; sourceTree = "<group>"; };
 		8F3D82FD2A7994B600094231 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
 		8F3D83012A7997CB00094231 /* 04b.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = 04b.TTF; sourceTree = "<group>"; };
 		8F3D83022A79990700094231 /* Mini-Challenge-01-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mini-Challenge-01-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8F3D83042A799C6600094231 /* upheavtt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = upheavtt.ttf; path = ../../../../../Downloads/upheaval/upheavtt.ttf; sourceTree = "<group>"; };
+		8FD1081F2A7C0B04007EE797 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		8FD108222A7C1000007EE797 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
+		8FD108242A7C106B007EE797 /* ScoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
+		8FD108262A7C134E007EE797 /* HighscoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreController.swift; sourceTree = "<group>"; };
 		8FD3D0DA2A744265005AC47B /* Mini Challenge 01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Challenge 01.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD3D0DD2A744265005AC47B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FD3D0DF2A744265005AC47B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -55,6 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F39B2562A7AF6CC00EF1211 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				8F39B2592A7AF85400EF1211 /* MusicaJogo.wav */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
 		8F3D83002A7997CB00094231 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +80,16 @@
 				8F3D83012A7997CB00094231 /* 04b.TTF */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		8FD108212A7C0FED007EE797 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8FD108222A7C1000007EE797 /* CoreDataController.swift */,
+				8FD108242A7C106B007EE797 /* ScoreController.swift */,
+				8FD108262A7C134E007EE797 /* HighscoreController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		8FD3D0D12A744265005AC47B = {
@@ -83,6 +111,7 @@
 		8FD3D0DC2A744265005AC47B /* Mini Challenge 01 */ = {
 			isa = PBXGroup;
 			children = (
+				8FD1081E2A7C0B04007EE797 /* Model.xcdatamodeld */,
 				8F3D83022A79990700094231 /* Mini-Challenge-01-Info.plist */,
 				8FD3D0DD2A744265005AC47B /* AppDelegate.swift */,
 				8FD3D0DF2A744265005AC47B /* GameScene.sks */,
@@ -97,6 +126,8 @@
 				8FD3D0EA2A744265005AC47B /* Assets.xcassets */,
 				8FD3D0EC2A744265005AC47B /* LaunchScreen.storyboard */,
 				8FD3D0F62A74428F005AC47B /* JoystickController.swift */,
+				8FD108212A7C0FED007EE797 /* Controller */,
+				8F39B2562A7AF6CC00EF1211 /* Music */,
 				8F3D83002A7997CB00094231 /* Fonts */,
 			);
 			path = "Mini Challenge 01";
@@ -164,6 +195,7 @@
 				8F3D83052A799C6600094231 /* upheavtt.ttf in Resources */,
 				8FD3D0E02A744265005AC47B /* GameScene.sks in Resources */,
 				8FD3D0EB2A744265005AC47B /* Assets.xcassets in Resources */,
+				8F39B25A2A7AF85400EF1211 /* MusicaJogo.wav in Resources */,
 				8FD3D0EE2A744265005AC47B /* LaunchScreen.storyboard in Resources */,
 				8F3D82FC2A79921D00094231 /* EndGameScene.sks in Resources */,
 				8F3D83032A799BBC00094231 /* 04b.TTF in Resources */,
@@ -181,7 +213,11 @@
 			files = (
 				8FD3D0E42A744265005AC47B /* GameScene.swift in Sources */,
 				8FD3D0E62A744265005AC47B /* GameViewController.swift in Sources */,
+				8FD108252A7C106B007EE797 /* ScoreController.swift in Sources */,
+				8FD108232A7C1000007EE797 /* CoreDataController.swift in Sources */,
 				8FD3D0F72A74428F005AC47B /* JoystickController.swift in Sources */,
+				8FD108202A7C0B04007EE797 /* Model.xcdatamodeld in Sources */,
+				8FD108272A7C134E007EE797 /* HighscoreController.swift in Sources */,
 				8F39B2522A7AC4B400EF1211 /* MenuScene.swift in Sources */,
 				8FD3D0DE2A744265005AC47B /* AppDelegate.swift in Sources */,
 				8F3D82FE2A7994B700094231 /* EndGameScene.swift in Sources */,
@@ -406,6 +442,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8FD1081E2A7C0B04007EE797 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8FD1081F2A7C0B04007EE797 /* Model.xcdatamodel */,
+			);
+			currentVersion = 8FD1081F2A7C0B04007EE797 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8FD3D0D22A744265005AC47B /* Project object */;
 }
