@@ -13,12 +13,16 @@ class MenuScene: SKScene {
     
     var PlayButton: SKSpriteNode!
     var PlayText: SKLabelNode!
+    var notificationSent = false
 
     override func didMove(to view: SKView) {
         
         requestPermission()
         
-        sendNotification()
+        if !notificationSent{
+            sendNotification()
+            notificationSent = true
+        }
 
         PlayButton = self.childNode(withName: "PlayButton") as? SKSpriteNode
         PlayText = self.childNode(withName: "PlayText") as? SKLabelNode
@@ -64,8 +68,8 @@ class MenuScene: SKScene {
         content.sound = UNNotificationSound.default
         
         var date = DateComponents()
-        date.hour = 17
-        date.minute = 05
+        date.hour = 13
+        date.minute = 35
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
         
